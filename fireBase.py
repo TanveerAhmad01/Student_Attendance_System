@@ -13,15 +13,19 @@ class Database:
 
     def get_user(self):
         ref = db.reference()  
-        data = ref.get()  
+        data = ref.get()
         return data
+       
       
     
     def add_user(self,user_data):
         ref = db.reference()
         new_user_ref = ref.push(user_data)
-        print("Data added successfully:")
+        print("Data added successfully: ")
 
-
+    def update_user(self, update_data):
+        ref = db.reference()
+        ref.update(update_data)
+        print("Data is updated")
 
 
