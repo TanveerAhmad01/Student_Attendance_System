@@ -14,6 +14,7 @@ class Database:
     def get_user(self):
         ref = db.reference()  
         data = ref.get()
+        print("Data Fatched: ")
         return data
        
       

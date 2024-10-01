@@ -14,6 +14,7 @@ class AddUser:
         self.list = []
         self.base64 = ''
     def AddUserData(self, path):
+
         image_path = path
         image = cv2.imread(image_path)
         resize = cv2.resize(image, (self.height, self.width))
@@ -21,8 +22,6 @@ class AddUser:
         face_encodings = face_recognition.face_encodings(x)
         _, buffer = cv2.imencode('.jpg', image)
         self.base64 = base64.b64encode(buffer).decode('utf-8')
-        # self.base64 = base64.b64encode(resize).decode('utf-8')
-
         if face_encodings:
             self.list.append(face_encodings[0].tolist()) 
         else:

@@ -4,7 +4,7 @@ import numpy as np
 import face_recognition 
 import base64
 import time 
-
+import cvzone
 
 class Camera:
     def __init__(self):
@@ -21,7 +21,7 @@ class Camera:
         self.counter = 0
         self.time = ''
         self.face_EncodeingsForUpdate = ''
-
+        self.webHeight = self.openCamera.set(cv2.CAP_PROP_XI_WIDTH,680)
     def FetchData(self):
         from fireBase import Database
         data = Database()
@@ -50,8 +50,11 @@ class Camera:
             gray_frame = cv2.cvtColor(self.resizedwebcam, cv2.COLOR_BGR2RGB)
             faces = self.face_cascade.detectMultiScale(gray_frame, scaleFactor=1.1, minNeighbors=5)
 
+           
             for (x, y, w, h) in faces:
-                cv2.rectangle(self.resizedwebcam, (x, y), (x + w, y + h), (255, 0, 0), 2)
+                box = (x, y, w, h)
+                self.resizedwebcam = cvzone.cornerRect(
+                self.resizedwebcam,box,l=30,t=3,rt=0,colorR=(255, 0, 255),colorC=(0, 255, 0))
                 
             self.resizedBg[135:135+370, 50:50+460] = self.resizedwebcam
             resizeMode = cv2.resize(self.moduleList[self.mode], (325, 510))
@@ -66,8 +69,6 @@ class Camera:
                 for i, match in enumerate(facematches):
                     if match == True:
                         user_info = self.face_Encodeings[i]
-                        # self.face_EncodeingsForUpdate = user_info[0]
-                        print(self.face_EncodeingsForUpdate)
                         user_name = user_info[1]
                         roll_No = user_info[2]
                         attendance = user_info[4]
