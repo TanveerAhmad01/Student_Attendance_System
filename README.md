@@ -76,7 +76,8 @@ cd student-attendance-system</code></pre>
 
 <h3>Output Screenshots</h3>
 <p>Below are some screenshots demonstrating the functionality of the Student Attendance System:</p>
-<img width="716" alt="git" src="https://github.com/user-attachments/assets/a6f9a4d6-83bc-4886-b06d-8df10d580048">
+![Screenshot 2024-10-03 073936](https://github.com/user-attachments/assets/42b165fa-929e-45a5-b5bc-307a25a6eb71)
+
 
 
 
